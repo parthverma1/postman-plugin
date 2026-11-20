@@ -1,6 +1,6 @@
 ---
 name: application-testing
-description: Sets up, runs, debugs, and interprets results from `postman application test` — the Postman layer that runs your Playwright tests, captures their network traffic, matches it against a collection contract, runs pm.test assertions, and publishes results to Application Inventory. Covers the Postman side of the integration only — not Playwright test authoring or Playwright failures unrelated to capture. Use when the user asks to "set up application testing," "test my application with Postman," "connect my Playwright tests to Postman," "capture network traffic from Playwright," "Playwright tests are running but nothing shows up in Postman," "why isn't application testing capturing anything," "exclude certain requests from capture," "generate a collection from my app's traffic," "set up application testing in CI," "what API coverage do my e2e tests have," "which APIs are my Playwright tests not hitting."
+description: Sets up, runs, debugs, and interprets results from `postman application test` — the Postman layer that runs your Playwright tests, captures their network traffic, matches it against a collection contract, runs pm.test assertions, and publishes results to Application Inventory. Covers the Postman side of the integration only — not Playwright test authoring or Playwright failures unrelated to capture. Use when the user asks to "set up application testing," "test my application with Postman," "connect my Playwright tests to Postman," "capture network traffic from Playwright," "Playwright tests are running but nothing shows up in Postman," "why isn't application testing capturing anything," "exclude certain requests from capture," "generate a collection from my app's traffic," "set up application testing in CI," "what API coverage do my e2e tests have," "which APIs are my Playwright tests not hitting." Running Playwright tests in the Postman cloud is the `postman:application-cloud-testing` skill.
 ---
 
 # Application Test
@@ -18,6 +18,39 @@ description: Sets up, runs, debugs, and interprets results from `postman applica
 The question it answers: **did my app's actual HTTP calls conform to the collection contract?** Not "does this endpoint respond correctly" — for that, use `postman collection run`.
 
 **Application Inventory** is where results are published — a Postman dashboard that records each run's Playwright test results alongside captured/matched/assertion counts, giving you a combined view of test health and API contract conformance across runs.
+
+**Running in the Postman cloud is a different command with its own skill.** `postman application project` (alias `postman app project`) syncs a Playwright project to the workspace as an *application test* and runs it on Postman's infrastructure, with HTML and JSON reports. It does no capture or collection matching, and is covered by the `postman:application-cloud-testing` skill. [Choose the Route](#choose-the-route) says which one a request needs.
+
+---
+
+## Choose the Route
+
+The two commands are separate routes; a request such as "connect my Playwright tests to Postman" can mean either. Decide before setting anything up:
+
+| | Inventory route (`postman app test`) | Project route (`postman app project`) |
+|:--|:--|:--|
+| Where tests run | This machine or CI, against your running app | The Postman cloud |
+| What it adds to the repo | `postman-playwright`, the `withPostman()` config wrapper, `postman.config.cjs` | The folder synced to the workspace, mapped in `.postman/resources.yaml` |
+| Result | Captured API calls matched against a collection; contract and coverage in Application Inventory | Playwright results with HTML and JSON reports per cloud run; a monitor can run the test on a schedule |
+| Needs | A collection; the app reachable where the tests run | The app reachable from the Postman cloud; a push before each run |
+
+1. **Check the repository first.**
+   - `postman.config.cjs`, `withPostman(` or `attachNetworkCapture(` → the inventory route is set up.
+   - `appTests` entries in `.postman/resources.yaml`, or a folder under `postman/appTests/` → the project route is set up.
+   - Both → both are set up; follow the one the request is about.
+2. **Then read the request.**
+   - Capture, traffic, collection, coverage, contract, Application Inventory → inventory route.
+   - Run in the cloud, application test, push, cloud run, run report, schedule, monitor → project route.
+3. **Still unclear → ask one question; do not guess.** Ask it as written, with these two options:
+
+   > How do you want to use your Playwright tests with Postman?
+   >
+   > 1. **Check your app's API calls** — Keep running the tests here or in CI. Postman records the API calls they make, checks each one against a collection, and shows contract and coverage results in Application Inventory.
+   > 2. **Run them in the Postman cloud** — Sync the project to your workspace as an application test. Run it on demand, or add a monitor to run it on a schedule, and get an HTML and JSON report for every run. The app under test must be reachable from the Postman cloud.
+
+   Each route writes files and the project route creates a test in the workspace, so neither is set up without the user choosing it. Ask nothing else yet: the folder and collection come from the repository, and later steps ask only when there is more than one.
+
+Then follow [Prerequisites](#prerequisites) and [Running](#running) for the inventory route. For the project route, load the `postman:application-cloud-testing` skill and follow it instead; nothing below applies to it.
 
 ---
 

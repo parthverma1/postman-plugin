@@ -124,15 +124,28 @@
       ]
     },
     {
+      "name": "application-cloud-testing",
+      "plugin": "postman",
+      "description": "Creates, connects, runs, and reads results from application tests with `postman application project` (alias `postman app project`), which syncs a Playwright project to a Postman workspace and runs it in the Postman cloud, with HTML and JSON reports per run. Covers the Postman side only, not Playwright test authoring. Use when the user asks to \"run my Playwright tests in the Postman cloud,\" \"create an application test,\" \"connect this Playwright folder to Postman,\" \"push my application test,\" \"why did my cloud application test fail,\" \"get the report for my test run,\" \"list my application tests,\" \"delete an application test.\" Checking captured traffic against a collection is the `postman:application-testing` skill.",
+      "files": [
+        {
+          "target": "SKILL.md",
+          "source": "skills/application-cloud-testing/SKILL.md",
+          "bytes": 8703,
+          "sha256": "59f2f2f5dc8d27827622020366e519b742b622acc7482b44b470b64a9f1a5e30"
+        }
+      ]
+    },
+    {
       "name": "application-testing",
       "plugin": "postman",
-      "description": "Sets up, runs, debugs, and interprets results from `postman application test` — the Postman layer that runs your Playwright tests, captures their network traffic, matches it against a collection contract, runs pm.test assertions, and publishes results to Application Inventory. Covers the Postman side of the integration only — not Playwright test authoring or Playwright failures unrelated to capture. Use when the user asks to \"set up application testing,\" \"test my application with Postman,\" \"connect my Playwright tests to Postman,\" \"capture network traffic from Playwright,\" \"Playwright tests are running but nothing shows up in Postman,\" \"why isn't application testing capturing anything,\" \"exclude certain requests from capture,\" \"generate a collection from my app's traffic,\" \"set up application testing in CI,\" \"what API coverage do my e2e tests have,\" \"which APIs are my Playwright tests not hitting.\"",
+      "description": "Sets up, runs, debugs, and interprets results from `postman application test` — the Postman layer that runs your Playwright tests, captures their network traffic, matches it against a collection contract, runs pm.test assertions, and publishes results to Application Inventory. Covers the Postman side of the integration only — not Playwright test authoring or Playwright failures unrelated to capture. Use when the user asks to \"set up application testing,\" \"test my application with Postman,\" \"connect my Playwright tests to Postman,\" \"capture network traffic from Playwright,\" \"Playwright tests are running but nothing shows up in Postman,\" \"why isn't application testing capturing anything,\" \"exclude certain requests from capture,\" \"generate a collection from my app's traffic,\" \"set up application testing in CI,\" \"what API coverage do my e2e tests have,\" \"which APIs are my Playwright tests not hitting.\" Running Playwright tests in the Postman cloud is the `postman:application-cloud-testing` skill.",
       "files": [
         {
           "target": "SKILL.md",
           "source": "skills/application-testing/SKILL.md",
-          "bytes": 11629,
-          "sha256": "2531d4485bf5097313d9bc1ffefe22e432d7ba624d5f6c1973f3d7a945c44409"
+          "bytes": 14786,
+          "sha256": "1e17995b13ee436c1954db841c00ee8bc2c6a4b93cf9264a6f52b414102339b7"
         }
       ]
     },
