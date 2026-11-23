@@ -57,10 +57,10 @@ CLI answers `postman simulation -h` with its general help).
   name matches another repo.
 - **Each member needs a mock: see `api-mocking`,** which looks for the owning
   team's published mock before building one. Finding and pulling an owner's
-  mock needs a signed-in CLI; check `postman status` first. Signed out in a
-  project without `postman/`, `postman init --json` starts a temporary
-  session to search with; see **workspaces**' "What init unlocks". With no session, build each mock and record
-  that the owner search was skipped. For a question, one built from
+  mock needs a signed-in CLI, because the owner's workspace belongs to their
+  team, which a temporary session from `postman init` can't see. Check
+  `postman status` first; signed out, build each mock and record that the
+  owner search was skipped. For a question, one built from
   the contract will do; one that invents responses can send the caller down a
   path the real service never would. In a mock you build, answer `501` for calls this path
   doesn't make: a `404` reads to the caller like a real "not found".

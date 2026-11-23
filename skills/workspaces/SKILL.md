@@ -44,7 +44,9 @@ these:
   it.
 - **A session without sign-in.** When the CLI is signed out, init starts a
   temporary session and binds its personal workspace. Commands that need a
-  session can then run before the user signs up.
+  session can then run before the user signs up. Search, the Context Graph
+  and pulling other teams' dependencies still need sign-in: their answers
+  come from the team's workspaces, which a temporary session can't see.
 - **A workspace for results.** Commands that create monitors, publish test
   results or push artifacts default to the workspace bound in
   `.postman/resources.yaml`. When the CLI is signed in, `--json` alone writes
