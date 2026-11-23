@@ -176,8 +176,8 @@
         {
           "target": "SKILL.md",
           "source": "skills/collection-schema-v3/SKILL.md",
-          "bytes": 4089,
-          "sha256": "0e4ae2c862c7f525404c35239008ccccea98e19bd07be4ac5939793f8769b540"
+          "bytes": 4753,
+          "sha256": "af44ccdbb7b7751a4691631107a830c7217eef12f37c44ce074fb8ca9c0cc5c3"
         },
         {
           "target": "reference/environment.md",
