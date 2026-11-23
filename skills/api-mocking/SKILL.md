@@ -23,8 +23,10 @@ When the API belongs to another team or a third-party provider, look for a
 published mock before writing one: a maintained mock encodes the contract
 and the service's state; yours encodes a guess.
 
-Every step below needs a signed-in CLI. Check `postman status` first; signed
-out, skip to building one and say the search was skipped.
+Every step below needs a signed-in CLI. Check `postman status` first. Signed
+out in a project without `postman/`, `postman init --json` starts a temporary
+session to search with; see **workspaces**' "What init unlocks". With no session, skip to building one and say
+the search was skipped.
 
 1. Find the mock.
    - **Another team's service:** find the owner's workspace with

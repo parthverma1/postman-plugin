@@ -24,7 +24,9 @@ guarantee; a successful HTTP exchange alone does not establish correctness.
    variables, and scripts. `postman request` takes a URL, not a request YAML
    path; for an unsaved request with an existing payload file, `--body @path`
    preserves that file as the source. See **collection-schema-v3** when
-   editing the saved request.
+   editing the saved request. In a project without `postman/`,
+   `postman init --json` creates the collection folder to save a new request
+   in, so the next session reruns it instead of rebuilding it; see **workspaces**' "What init unlocks".
 3. Derive assertions from the contract and the behavior at risk. A test that
    merely repeats the current implementation can bless its bug. Preserve
    existing guarantees and add checks for the changed behavior; put reusable
